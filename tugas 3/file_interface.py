@@ -53,5 +53,3 @@ if __name__=='__main__':
     f = FileInterface()
     print(f.list())
     print(f.get(['pokijan.jpg']))
-    print(f.delete(['pokijan.jpg']))
-    print(f.post(['pokijan.jpg']))

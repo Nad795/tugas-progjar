@@ -63,3 +63,9 @@ DELETE
 - GAGAL:
   - status: ERROR
   - data: pesan kesalahan
+
+Penjelasan Tambahan:
+POST bertujuan untuk menambahkan file baru dengan parameter nama file dan isi file yang telah diencode menggunakan base64.
+Jika file berhasil diupload, status request adalah OK dan muncul pesan "File diupload", tetapi jika gagal, status request adalah ERROR dan muncul pesan kesalahan.
+DELETE bertujuan untuk menghapus file dengan parameter nama file.
+Jika file berhasil dihapus, status request adalah OK dan muncul pesan "File dihapus", tetapi jika gagal, status request adalah ERROR dan muncul pesan kesalahan.
