@@ -68,7 +68,7 @@ def remote_post(filename=""):
     isifile = base64.b64encode(file.read()).decode()
     command_str=f"POST {filename}" + isifile
     hasil=send_command(command_str)
-    if(hasil['status' == "OK"]):
+    if(hasil['status'] == "OK"):
         print("File diupload")
         return True
     else:
@@ -78,7 +78,7 @@ def remote_post(filename=""):
 def remote_delete(filename=""):
     command_str=f"DELETE {filename}"
     hasil=send_command(command_str)
-    if(hasil['status' == "OK"]):
+    if(hasil['status'] == "OK"):
         print("File dihapus")
         return True
     else:
