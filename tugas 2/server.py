@@ -2,7 +2,7 @@ from socket import *
 import socket
 import threading
 import logging
-import datetime
+from datetime import datetime
 import sys
 
 class ProcessTheClient(threading.Thread):
