@@ -1,6 +1,6 @@
 import socket
 
-server_address = ('172.20.152.241', 45000)
+server_address = ('172.16.16.101', 45000)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(server_address)
 
