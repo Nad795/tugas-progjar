@@ -66,8 +66,8 @@ def remote_get(filename=""):
 def remote_post(filename=""):
     file = open(filename, 'rb')
     isifile = base64.b64encode(file.read()).decode()
-    command_str=f"POST {filename}" + isifile
-    hasil=send_command(command_str)
+    command_str = f"POST {filename} " + isifile
+    hasil = send_command(command_str)
     if(hasil['status'] == "OK"):
         print("File diupload")
         return True
