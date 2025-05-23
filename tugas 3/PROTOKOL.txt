@@ -39,3 +39,27 @@ GET
   - status: ERROR
   - data: pesan kesalahan
 
+POST
+* TUJUAN: untuk menambahkan file baru
+* PARAMETER:
+  - PARAMETER1 : nama file
+  - PARAMETER2 : isi file yang telah diencode menggunakan base64
+* RESULT:
+- BERHASIL:
+  - status: OK
+  - data: pesan "File diupload"
+- GAGAL:
+  - status: ERROR
+  - data: pesan kesalahan
+
+DELETE
+* TUJUAN: untuk menghapus file
+* PARAMETER:
+  - PARAMETER1 : nama file
+* RESULT:
+- BERHASIL:
+  - status: OK
+  - data: pesan "File dihapus"
+- GAGAL:
+  - status: ERROR
+  - data: pesan kesalahan
