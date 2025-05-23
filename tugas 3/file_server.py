@@ -18,7 +18,7 @@ class ProcessTheClient(threading.Thread):
 
     def run(self):
         while True:
-            data = self.connection.recv(1048576)
+            data = self.connection.recv(33554432)
             if data:
                 d = data.decode()
                 hasil = fp.proses_string(d)
