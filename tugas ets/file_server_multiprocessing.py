@@ -35,7 +35,7 @@ class Server:
                 logging.warning(f"connection from {client_address}")
                 try:
                     while True:
-                        data = connection.recv(33554432)
+                        data = connection.recv(134217728)
                         if not data:
                             break
                         clt = executor.submit(ProcessTheClient, data)
