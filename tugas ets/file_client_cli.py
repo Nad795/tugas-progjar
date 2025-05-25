@@ -18,7 +18,7 @@ def send_command(command_str=""):
         data_received="" #empty string
         while True:
             #socket does not receive all data at once, data comes in part, need to be concatenated at the end of process
-            data = sock.recv(16)
+            data = sock.recv(134217728)
             if data:
                 #data is not empty, concat with previous content
                 data_received += data.decode()
