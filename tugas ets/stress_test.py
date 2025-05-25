@@ -107,7 +107,7 @@ def run_stress_test(operation, filename, client_workers, server_workers):
 
 
 def main():
-    files = ["file_10MB.dat", "file_50MB.dat", "file_100MB.dat"]
+    files = ["files/10MB_file.dat", "files/50MB_file.dat", "files/100MB_file.dat"]
     client_worker_pool = [1, 5, 50]
     server_worker_pool = [1, 5, 50]
     operations = ["upload", "download"]
