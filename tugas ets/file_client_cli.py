@@ -61,9 +61,11 @@ def remote_get(filename=""):
             with open(namafile,'wb+') as fp:
                 fp.write(isifile)
             end = time.time()
+            print("File berhasil didownload")
             return True, end-start
         else:
             end = time.time()
+            print("Gagal")
             return False, end-start
     except Exception as e:
         return False, 0
@@ -77,8 +79,10 @@ def remote_post(filename=""):
         hasil = send_command(command_str)
         end = time.time()
         if hasil and hasil.get('status') == "OK":
+            print("File berhasil diupload")
             return True, end-start
         else:
+            print("Gagal")
             return False, end-start
     except Exception as e:
         return False, 0
