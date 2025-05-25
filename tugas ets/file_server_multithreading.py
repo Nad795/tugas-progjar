@@ -45,7 +45,7 @@ class Server(threading.Thread):
         logging.warning(f"server berjalan di ip address {self.ipinfo}")
         self.my_socket.bind(self.ipinfo)
         self.my_socket.listen(5)
-        with ThreadPoolExecutor() as executor:
+        with ThreadPoolExecutor(max_workers=50) as executor:
             while True:
                 connection, client_address = self.my_socket.accept()
                 logging.warning(f"connection from {client_address}")

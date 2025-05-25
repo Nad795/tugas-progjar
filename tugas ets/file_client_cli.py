@@ -2,6 +2,7 @@ import socket
 import json
 import base64
 import logging
+import time
 
 server_address=('0.0.0.0',7777)
 
@@ -49,31 +50,38 @@ def remote_list():
         return False
 
 def remote_get(filename=""):
-    command_str=f"GET {filename}"
-    hasil = send_command(command_str)
-    if (hasil['status']=='OK'):
-        #proses file dalam bentuk base64 ke bentuk bytes
-        namafile= hasil['data_namafile']
-        isifile = base64.b64decode(hasil['data_file'])
-        fp = open(namafile,'wb+')
-        fp.write(isifile)
-        fp.close()
-        return True
-    else:
-        print("Gagal")
-        return False
+    start = time.time()
+    try:
+        command_str=f"GET {filename}"
+        hasil = send_command(command_str)
+        if hasil and hasil.get('status')=='OK':
+            #proses file dalam bentuk base64 ke bentuk bytes
+            namafile= hasil['data_namafile']
+            isifile = base64.b64decode(hasil['data_file'])
+            with open(namafile,'wb+') as fp:
+                fp.write(isifile)
+            end = time.time()
+            return True, end-start
+        else:
+            end = time.time()
+            return False, end-start
+    except Exception as e:
+        return False, 0
 
 def remote_post(filename=""):
-    file = open(filename, 'rb')
-    isifile = base64.b64encode(file.read()).decode()
-    command_str = f"POST {filename} " + isifile
-    hasil = send_command(command_str)
-    if(hasil['status'] == "OK"):
-        print("File diupload")
-        return True
-    else:
-        print("Gagal")
-        return False
+    start = time.time()
+    try:
+        with open(filename, 'rb') as file:
+            isifile = base64.b64encode(file.read()).decode()
+        command_str = f"POST {filename} " + isifile
+        hasil = send_command(command_str)
+        end = time.time()
+        if hasil and hasil.get('status') == "OK":
+            return True, end-start
+        else:
+            return False, end-start
+    except Exception as e:
+        return False, 0
     
 def remote_delete(filename=""):
     command_str=f"DELETE {filename}"
@@ -84,6 +92,7 @@ def remote_delete(filename=""):
     else:
         print("Gagal")
         return False
+
 
 if __name__=='__main__':
     server_address=('172.16.16.101',7777)
