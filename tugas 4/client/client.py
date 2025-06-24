@@ -6,7 +6,7 @@ import ssl
 import os
 
 server_address = ('www.its.ac.id', 443)
-server_address = ('www.ietf.org',443)
+server_address = ('172.16.16.101', 8889)
 
 
 def make_socket(destination_address='localhost', port=12000):

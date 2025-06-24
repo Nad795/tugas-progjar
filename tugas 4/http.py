@@ -46,12 +46,16 @@ class HttpServer:
 
 	def upload(self, headers, body):
 		filename = None
+		content_length = 0
 		for line in headers:
 			if line.lower().startswith('filename:'):
 				filename = line.split(':', 1)[1].strip()
-		if filename:
+			if line.lower().startswith('content-length:'):
+				content_length = int(line.split(':', 1)[1].strip())
+
+		if filename and content_length > 0:
 			with open(os.path.join('.', filename), 'wb') as f:
-				f.write(body.encode())
+				f.write(body.encode()[:content_length])
 			return self.response(200, 'OK', f'File {filename} berhasil diupload', {'Content-type': 'text/plain'})
 		return self.response(400, 'Bad Request', 'Filename header missing', {})
 
