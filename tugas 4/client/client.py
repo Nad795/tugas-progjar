@@ -78,6 +78,18 @@ def send_command(command_str, is_secure=False):
         logging.warning(f"error during data receiving {str(ee)}")
         return False
 
+def send_list():
+    cmd = """GET /list HTTP/1.0\r\n\r\n"""
+    return send_command(cmd, is_secure=False)
+
+def send_upload(filename, content):
+    cmd = f"""POST /upload HTTP/1.0\r\nFilename: {filename}\r\n\r\n{content}"""
+    return send_command(cmd, is_secure=False)
+
+def send_delete(filename):
+    cmd = f"""DELETE /delete?file={filename} HTTP/1.0\r\n\r\n"""
+    return send_command(cmd, is_secure=False)
+
 #> GET / HTTP/1.1
 #> Host: www.its.ac.id
 #> User-Agent: curl/8.7.1
@@ -85,11 +97,7 @@ def send_command(command_str, is_secure=False):
 #>
 
 if __name__ == '__main__':
-    cmd = f"""GET /rfc/rfc2616.txt HTTP/1.1
-Host: www.ietf.org
-User-Agent: myclient/1.1
-Accept: */*
-
-"""
-    hasil = send_command(cmd, is_secure=True)
-    print(hasil)
+    print(send_upload('testing.txt', 'ini testing file'))
+    print(send_list())
+    print(send_delete('testing.txt'))
+    print(send_list())
