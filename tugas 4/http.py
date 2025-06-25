@@ -54,8 +54,9 @@ class HttpServer:
 				content_length = int(line.split(':', 1)[1].strip())
 
 		if filename:
+			body_bytes = body.encode()
 			with open(os.path.join('.', filename), 'wb') as f:
-				f.write(body.encode()[:content_length])
+				f.write(body_bytes[:content_length])
 			return self.response(200, 'OK', f'File {filename} berhasil diupload', {'Content-type': 'text/plain'})
 		return self.response(400, 'Bad Request', 'Filename header missing', {})
 
