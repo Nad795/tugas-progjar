@@ -85,7 +85,7 @@ def send_list():
 def send_upload(filename, content):
     content_bytes = content.encode()
     content_length = len(content_bytes)
-    cmd = f"""POST /upload HTTP/1.0\r\nFilename: {filename}\r\nContent_Length: {content_length}\r\n\r\n{content}"""
+    cmd = f"""POST /upload HTTP/1.0\r\nFilename: {filename}\r\nContent-Length: {content_length}\r\n\r\n{content}"""
     return send_command(cmd, is_secure=False)
 
 def send_delete(filename):
